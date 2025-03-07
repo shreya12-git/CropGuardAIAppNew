@@ -46,7 +46,8 @@ class _SignUpPageState extends State<SignUpPage> {
     if (response.statusCode == 200 && responseBody['success'] == true) {
       print("Signup successful");
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Signup Successful!')),
+        const SnackBar(content: Text('Signup Successful!'),
+        backgroundColor: Color.fromARGB(255, 127, 168, 70), ),
       );
       Navigator.push(
         context,
@@ -56,13 +57,15 @@ class _SignUpPageState extends State<SignUpPage> {
       );
     } else {
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Signup failed: ${responseBody["message"]}')),
+        SnackBar(content: Text('Signup failed: ${responseBody["message"]}'),
+        backgroundColor: Color.fromARGB(255, 127, 168, 70), ),
       );
     }
   } catch (e) {
     if (!mounted) return;
     ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(content: Text('Error: ${e.toString()}')),
+      SnackBar(content: Text('Error: ${e.toString()}'),
+      backgroundColor: Color.fromARGB(255, 127, 168, 70), ),
     );
   }
 }

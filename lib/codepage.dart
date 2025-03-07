@@ -91,7 +91,8 @@ class _CodePageState extends State<CodePage> {
 
                   if (isVerified) {
                     ScaffoldMessenger.of(context).showSnackBar(
-                      const SnackBar(content: Text('OTP Verified Successfully!')),
+                      const SnackBar(content: Text('OTP Verified Successfully!'),
+                      backgroundColor: Color.fromARGB(255, 127, 168, 70), ),
                     );
 
                     Navigator.pushReplacement(
@@ -102,7 +103,8 @@ class _CodePageState extends State<CodePage> {
                     );
                   } else {
                     ScaffoldMessenger.of(context).showSnackBar(
-                      const SnackBar(content: Text('Invalid OTP. Please try again.')),
+                      const SnackBar(content: Text('Invalid OTP. Please try again.'),
+                      backgroundColor: Color.fromARGB(255, 127, 168, 70), ),
                     );
                   }
                 },

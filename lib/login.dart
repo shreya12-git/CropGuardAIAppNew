@@ -22,7 +22,10 @@ Future<bool> login(String email, String password, BuildContext context) async {
     if (response.statusCode == 200) {
       final responseData = jsonDecode(response.body);
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text("Login Successful!!")),
+        SnackBar(
+          content: Text("Login Successful!!"),
+          backgroundColor: Color.fromARGB(255, 127, 168, 70), // Green shade from your app
+        ),
       );
 
       // Navigate to HomePage after successful login
@@ -34,13 +37,19 @@ Future<bool> login(String email, String password, BuildContext context) async {
       return true;
     } else {
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text("Invalid Credentials!")),
+        const SnackBar(
+          content: Text("Invalid Credentials!"),
+          backgroundColor: Color.fromARGB(255, 127, 168, 70), // Another green shade
+        ),
       );
       return false;
     }
   } catch (error) {
     ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(content: Text("Error: $error")),
+      SnackBar(
+        content: Text("Error: $error"),
+        backgroundColor: Color.fromARGB(255, 127, 168, 70), // Matching error Snackbar color
+      ),
     );
     return false;
   }
