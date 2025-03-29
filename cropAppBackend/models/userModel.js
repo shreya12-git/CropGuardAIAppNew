@@ -2,6 +2,7 @@ const mongoose=require ('mongoose');
 const {ObjectId}=mongoose.Schema;
 const bcrypt=require("bcryptjs");
 const jwt=require("jsonwebtoken");
+const { type } = require('os');
 
 const userSchema=new mongoose.Schema({
     email:{
@@ -20,6 +21,24 @@ const userSchema=new mongoose.Schema({
         required:[true,'password is required'],
         minlength:[6,'Password must have atleast (6) characters']
     },
+    full_name:{
+        type:String
+    },
+    DOB:{
+        type:Date
+    },
+    city:{
+        type:String
+    },
+    state:{
+        type:String
+    },
+    pincode:{
+        type:String
+    },
+    first:{
+        type:Boolean
+    }
 },
 {timestamps:true}
 )

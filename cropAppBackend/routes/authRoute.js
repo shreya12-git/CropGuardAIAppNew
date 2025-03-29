@@ -1,7 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const { signup, signin, logout, userProfile, sendotp,verifyOtpAndCreateUser } = require("../controllers/authController");
-const { isAuthenticated } = require("../middleware/auth");
+const { signup, signin, logout, sendotp,verifyOtpAndCreateUser, updateprofile, get_data } = require("../controllers/authController");
 
 // Auth Routes
 router.post("/signup", signup);
@@ -11,6 +10,6 @@ router.post("/sendotp", sendotp);
 router.get("/logout", logout);
 
 // Protected Route: Requires Authentication
-router.get("/me", isAuthenticated, userProfile);
-
+router.get("/me", get_data);
+router.post("/update",updateprofile)
 module.exports = router;

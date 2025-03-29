@@ -33,7 +33,7 @@ exports.signup = async (req, res, next) => {
         const hashedPassword = await bcrypt.hash(password, 10);
 
         // Store user temporarily without saving
-        const user = new User({ email, password: hashedPassword });
+        const user = new User({ email, password: hashedPassword , first:true });
 
         res.status(200).json({
             success: true,
@@ -214,4 +214,37 @@ const sendTokenResponse = async (user, codeStatus, res) => {
         token,
         user
     });
+};
+
+
+const updateprofile = async(req,res) => {
+    const {email,full_name,DOB,city,state,pincode} = req.body
+
+    const userDetails = await User.findOne({
+        email: email,
+      })
+    id = userDetails._id
+    const updatedProfile = await User.findByIdAndUpdate(
+    { full_name: full_name },
+    { DOB: DOB },
+    { first: false },
+    { city: city },
+    { state: state },
+    { pincode: pincode },
+    )
+    return res.status(200).json({
+        success: true,
+        updatedProfile:userProfile
+    })
+};
+
+const get_data = async(req,res) => {
+    const email = req.body
+    const userDetails = await User.findOne({
+        email: email,
+      })
+      return res.status(200).json({
+        success: true,
+        updatedProfile:userDetails
+    })
 };
