@@ -217,7 +217,7 @@ const sendTokenResponse = async (user, codeStatus, res) => {
 };
 
 
-const updateprofile = async(req,res) => {
+exports.updateprofile = async(req,res) => {
     const {email,full_name,DOB,city,state,pincode} = req.body
 
     const userDetails = await User.findOne({
@@ -238,7 +238,7 @@ const updateprofile = async(req,res) => {
     })
 };
 
-const get_data = async(req,res) => {
+exports.get_data = async(req,res) => {
     const email = req.body
     const userDetails = await User.findOne({
         email: email,
