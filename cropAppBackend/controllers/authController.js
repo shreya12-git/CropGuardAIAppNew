@@ -171,9 +171,9 @@ exports.verifyOtpAndCreateUser = async (req, res, next) => {
             console.log("User already exists:", user.email);
             return res.status(400).json({ success: false, message: "User already exists" });
         }
-
+        first = true;
         // Create new user
-        const newUser = await User.create({ email, password });
+        const newUser = await User.create({ email, password, first});
         console.log("New User Created:", newUser);
 
         sendTokenResponse(newUser, 201, res);
@@ -234,7 +234,7 @@ exports.updateprofile = async(req,res) => {
     )
     return res.status(200).json({
         success: true,
-        updatedProfile:userProfile
+        updatedProfile:updatedProfile
     })
 };
 
