@@ -224,9 +224,9 @@ exports.updateprofile = async(req,res) => {
     const userDetails = await User.findOne({
         email: email
     })
-    log.info(userDetails)
+    console.log(userDetails)
     id = userDetails._id
-    log.info(id)
+    console.log(id)
     const updatedProfile = await User.findByIdAndUpdate(
     { full_name: full_name },
     { DOB: DOB },

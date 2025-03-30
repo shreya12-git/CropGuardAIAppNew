@@ -30,7 +30,7 @@ app.use(bodyParser.urlencoded({
   extended: true
 }));
 app.use(cookieParser());
-app.use(cors());
+app.use(cors({ origin: '*' })); 
 
 
 
