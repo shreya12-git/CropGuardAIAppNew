@@ -218,7 +218,7 @@ const sendTokenResponse = async (user, codeStatus, res) => {
 };
 
 
-exports.updateProfile = async (req, res) => {
+exports.updateprofile = async (req, res) => {
     try {
         const { email, full_name, DOB, city, state, pincode } = req.body;
 
@@ -240,7 +240,6 @@ exports.updateProfile = async (req, res) => {
         return res.status(500).json({ success: false, message: "Internal server error", error: error.message });
     }
 };
-
 
 exports.get_data = async(req,res) => {
     const email = req.body
