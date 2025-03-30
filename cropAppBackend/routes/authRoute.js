@@ -10,6 +10,6 @@ router.post("/sendotp", sendotp);
 router.get("/logout", logout);
 
 // Protected Route: Requires Authentication
-router.get("/me", get_data);
+router.get("/me/:email", get_data);
 router.post("/update",updateprofile)
 module.exports = router;

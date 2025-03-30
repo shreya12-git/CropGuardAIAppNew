@@ -241,13 +241,12 @@ exports.updateprofile = async (req, res) => {
     }
 };
 
-exports.get_data = async(req,res) => {
-    const email = req.body
-    const userDetails = await User.findOne({
-        email: email,
-      })
-      return res.status(200).json({
+exports.get_data = async (req, res) => {
+    const { email } = req.params;  // Extract email from request parameters
+    const userDetails = await User.findOne({ email });
+
+    return res.status(200).json({
         success: true,
-        updatedProfile:userDetails
-    })
+        updatedProfile: userDetails
+    });
 };
