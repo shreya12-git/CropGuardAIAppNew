@@ -218,28 +218,29 @@ const sendTokenResponse = async (user, codeStatus, res) => {
 };
 
 
-exports.updateprofile = async(req,res) => {
-    const {email,full_name,DOB,city,state,pincode} = req.body
+exports.updateProfile = async (req, res) => {
+    try {
+        const { email, full_name, DOB, city, state, pincode } = req.body;
 
-    const userDetails = await User.findOne({
-        email: email
-    })
-    console.log(userDetails)
-    id = userDetails._id
-    console.log(id)
-    const updatedProfile = await User.findByIdAndUpdate(
-    { full_name: full_name },
-    { DOB: DOB },
-    { first: false },
-    { city: city },
-    { state: state },
-    { pincode: pincode },
-    )
-    return res.status(200).json({
-        success: true,
-        updatedProfile:updatedProfile
-    })
+        const updatedProfile = await User.findOneAndUpdate(
+            { email: email }, // Find user by email
+            { full_name, DOB, city, state, pincode }, // Update fields
+            { new: true } // Return the updated document
+        );
+
+        if (!updatedProfile) {
+            return res.status(404).json({ success: false, message: "User not found" });
+        }
+
+        return res.status(200).json({
+            success: true,
+            updatedProfile
+        });
+    } catch (error) {
+        return res.status(500).json({ success: false, message: "Internal server error", error: error.message });
+    }
 };
+
 
 exports.get_data = async(req,res) => {
     const email = req.body
