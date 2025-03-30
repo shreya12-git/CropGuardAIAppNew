@@ -221,10 +221,10 @@ const sendTokenResponse = async (user, codeStatus, res) => {
 exports.updateprofile = async (req, res) => {
     try {
         const { email, full_name, DOB, city, state, pincode } = req.body;
-
+        first = false;
         const updatedProfile = await User.findOneAndUpdate(
             { email: email }, // Find user by email
-            { full_name, DOB, city, state, pincode }, // Update fields
+            { full_name, DOB, city, state, pincode ,first}, // Update fields
             { new: true } // Return the updated document
         );
 
