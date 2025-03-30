@@ -3,6 +3,7 @@ const OTP = require("../models/OTP");
 const ErrorResponse = require('../utils/errorResponse');
 const otpGenerator = require("otp-generator");
 const bcrypt = require("bcryptjs");
+const { log } = require('console');
 
 // SIGNUP - Initial Step
 exports.signup = async (req, res, next) => {
@@ -221,9 +222,11 @@ exports.updateprofile = async(req,res) => {
     const {email,full_name,DOB,city,state,pincode} = req.body
 
     const userDetails = await User.findOne({
-        email: email,
-      })
+        email: email
+    })
+    log.info(userDetails)
     id = userDetails._id
+    log.info(id)
     const updatedProfile = await User.findByIdAndUpdate(
     { full_name: full_name },
     { DOB: DOB },
